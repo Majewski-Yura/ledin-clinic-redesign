@@ -309,6 +309,14 @@ html,body{overflow-x:clip}
   .reveal{opacity:1;transform:none}
   .chief__photo{transform:none}
 }
+
+/* ===== Иконки направлений ===== */
+.service__title{display:flex;flex-direction:column;align-items:flex-start;gap:28px}
+.service__icon{width:68px;height:68px;border-radius:50%;border:1px solid var(--linen);display:grid;place-items:center;color:var(--rust);
+  background:rgba(255,255,255,.45);transition:background .45s ease,color .45s ease,border-color .45s ease,transform .45s cubic-bezier(.2,.7,.2,1)}
+.service__icon svg{width:32px;height:32px;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.service:hover .service__icon{background:var(--rust);border-color:var(--rust);color:#fff;transform:rotate(-8deg)}
+@media (max-width:900px){.service__title{flex-direction:row;align-items:center;gap:18px}.service__icon{width:56px;height:56px;flex:none}}
 </style>
 </head>
 <body>
@@ -358,7 +366,7 @@ html,body{overflow-x:clip}
 
   <div class="services__grid">
     <article class="service">
-      <h3>Консультация</h3>
+      <div class="service__title"><span class="service__icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M8 4v8a6 6 0 0 0 12 0V4"/><path d="M6 4h4M18 4h4"/><path d="M14 18v2a6 6 0 0 0 12 0v-2"/><circle cx="26" cy="15" r="3"/></svg></span><h3>Консультация</h3></div>
       <p>Врач объяснит диагноз и&nbsp;составит индивидуальную карту лечения.</p>
       <ul>
         <li><a href="#">Консультация онколога</a></li>
@@ -368,7 +376,7 @@ html,body{overflow-x:clip}
       </ul>
     </article>
     <article class="service">
-      <h3>Лечение</h3>
+      <div class="service__title"><span class="service__icon" aria-hidden="true"><svg viewBox="0 0 32 32"><g transform="rotate(-45 16 16)"><rect x="5" y="11" width="22" height="10" rx="5"/><path d="M16 11v10"/></g></svg></span><h3>Лечение</h3></div>
       <p>Химиотерапия, таргетная и&nbsp;иммунотерапия по&nbsp;международным протоколам. Используем оригинальные европейские препараты.</p>
       <ul>
         <li><a href="#">Химиотерапия</a></li>
@@ -378,7 +386,7 @@ html,body{overflow-x:clip}
       </ul>
     </article>
     <article class="service">
-      <h3>Диагностика</h3>
+      <div class="service__title"><span class="service__icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M12.5 4.5l5 2.5-4.5 9-5-2.5z"/><path d="M13.6 15.6L12 19"/><path d="M17.5 11a7 7 0 0 1 1.5 12"/><path d="M8 27h16"/><path d="M11 23.5h10"/></svg></span><h3>Диагностика</h3></div>
       <p>Анализы и&nbsp;исследования делаем вместе с&nbsp;лабораториями и&nbsp;диагностическими центрами-партнёрами.</p>
       <ul>
         <li><a href="#">Лабораторные исследования</a></li>
