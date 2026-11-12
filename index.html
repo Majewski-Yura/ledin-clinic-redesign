@@ -146,6 +146,11 @@ h1 em{font-style:normal;color:var(--linen)}
 .contacts dt{font:500 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--bronze);margin-top:26px}
 .contacts dd{font:400 20px/1.4 var(--serif);margin-top:8px}
 .map{min-height:460px;background:linear-gradient(135deg,#DCD5C4,#C7BFAD);position:relative}
+/* Скругления */
+.chief__photo,.space__grid div,.doc__photo,.map{border-radius:20px;overflow:hidden}
+.btn{border-radius:12px}
+.book-wrap{background:#F4F1E8;padding:0 24px 24px}
+.book{border-radius:32px}
 .map::after{content:"Карта: ул. Трубецкая, 12";position:absolute;inset:auto auto 20px 20px;font:400 12px var(--sans);color:var(--bronze)}
 .map i{position:absolute;left:52%;top:46%;width:18px;height:18px;border-radius:50%;background:var(--rust);box-shadow:0 0 0 10px rgba(143,67,37,.18)}
 
@@ -164,6 +169,8 @@ h1 em{font-style:normal;color:var(--linen)}
   .nav__phone{display:none}
 }
 @media (max-width:900px){
+  .book-wrap{padding:0 12px 12px}
+  .book{border-radius:24px}
   .steps{grid-template-columns:1fr 1fr}
   .book,.contacts,.footer__top{grid-template-columns:1fr;gap:40px}
   .footer{padding:56px 16px 32px}
@@ -329,6 +336,7 @@ h1 em{font-style:normal;color:var(--linen)}
   </div>
 </section>
 
+<div class="book-wrap">
 <section class="sec book">
   <div>
     <h2 class="h2">Запишитесь<br><span>на&nbsp;консультацию</span></h2>
@@ -343,6 +351,7 @@ h1 em{font-style:normal;color:var(--linen)}
     <small>Нажимая кнопку, вы&nbsp;соглашаетесь на&nbsp;обработку персональных данных в&nbsp;соответствии с&nbsp;152-ФЗ.</small>
   </form>
 </section>
+</div>
 
 <section class="sec sec--cream">
   <div class="contacts">
