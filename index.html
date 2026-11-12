@@ -173,6 +173,12 @@ h1 em{font-style:normal;color:var(--linen)}
 .footer a{display:block;color:rgba(236,232,220,.75);text-decoration:none;font:300 14px/2 var(--sans)}
 .footer__bottom{display:flex;justify-content:space-between;gap:24px;padding-top:28px;font:300 12px/1.5 var(--sans);color:rgba(236,232,220,.5)}
 
+.nav__menu a,.nav__phone,.btn{white-space:nowrap}
+@media (max-width:1200px){
+  .nav{gap:32px}
+  .nav__menu{gap:22px;font-size:12px}
+  .nav__phone{display:none}
+}
 @media (max-width:900px){
   .steps{grid-template-columns:1fr 1fr}
   .video{height:440px}
