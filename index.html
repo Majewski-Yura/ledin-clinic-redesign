@@ -26,7 +26,7 @@ body{background:var(--umber);font-family:var(--sans);color:var(--cream)}
 .topbar{display:flex;justify-content:space-between;padding:14px 56px;font-size:12px;letter-spacing:.02em;color:rgba(236,232,220,.7);border-bottom:1px solid rgba(236,232,220,.14)}
 .topbar span+span::before{content:"·";margin:0 12px}
 .nav{display:flex;align-items:center;gap:48px;padding:22px 56px}
-.nav__logo img{height:68px;display:block}
+.nav__logo img{height:48px;width:auto;display:block}
 .nav__menu{display:flex;gap:34px;font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase}
 .nav__menu a,.nav__phone{color:var(--cream);text-decoration:none}
 .nav__right{margin-left:auto;display:flex;align-items:center;gap:28px}
@@ -90,7 +90,7 @@ h1 em{font-style:normal;color:var(--linen)}
 
 /* Блок 3 — Главный врач */
 .chief{display:grid;grid-template-columns:5fr 7fr;gap:80px;align-items:center}
-.chief__photo{aspect-ratio:4/5;background-image:url(images/ledin.jpg),linear-gradient(160deg,#C7BFAD,#6D4819)}
+.chief__photo{aspect-ratio:4/5;background-image:url(images/ledin.jpg),linear-gradient(160deg,#C7BFAD,#6D4819);background-position:center top}
 .chief__quote{font:400 30px/1.35 var(--serif);margin:34px 0 26px}
 .chief__quote::before{content:"«";color:var(--rust)}
 .chief__quote::after{content:"»";color:var(--rust)}
@@ -118,14 +118,15 @@ h1 em{font-style:normal;color:var(--linen)}
 
 /* Блок 5 — Врачи */
 .team__head{display:flex;justify-content:space-between;align-items:end;margin-bottom:56px}
-.team__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
-.doc__photo{aspect-ratio:3/4;margin-bottom:18px}
-.doc:nth-child(1) .doc__photo{background-image:url(images/doctor-1.jpg),linear-gradient(160deg,#C7BFAD,#977842)}
-.doc:nth-child(2) .doc__photo{background-image:url(images/doctor-2.jpg),linear-gradient(160deg,#B3A68E,#6D4819)}
-.doc:nth-child(3) .doc__photo{background-image:url(images/doctor-3.jpg),linear-gradient(160deg,#C7BFAD,#6B7B69)}
-.doc:nth-child(4) .doc__photo{background-image:url(images/doctor-4.jpg),linear-gradient(160deg,#A48F6A,#483015)}
+.team__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:48px 24px}
+.doc__photo{aspect-ratio:4/5;margin-bottom:20px;overflow:hidden;display:flex;align-items:flex-end;justify-content:center;
+  background:radial-gradient(120% 90% at 50% 100%,#D9D1BF 0%,#C7BFAD 55%,#B3A68E 100%);transition:background .3s}
+.doc:nth-child(even) .doc__photo{background:radial-gradient(120% 90% at 50% 100%,#A9B3A4 0%,#8C9886 55%,#6B7B69 100%)}
+.doc__photo img{width:86%;height:auto;display:block;transition:transform .5s ease}
+.doc:hover .doc__photo img{transform:scale(1.03)}
 .doc h4{font:400 22px/1.2 var(--serif)}
-.doc p{font:300 13px/1.5 var(--sans);color:rgba(46,34,22,.7);margin-top:6px}
+.doc p{font:300 13px/1.5 var(--sans);color:rgba(46,34,22,.75);margin-top:8px}
+.doc small{display:block;margin-top:10px;font:500 11px/1.4 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--rust)}
 .link--dark{color:var(--umber);border-bottom-color:rgba(46,34,22,.4)}
 
 /* Блок 6 — Как проходит лечение */
@@ -168,7 +169,7 @@ h1 em{font-style:normal;color:var(--linen)}
 /* Футер */
 .footer{background:var(--umber);color:rgba(236,232,220,.75);padding:72px 56px 40px}
 .footer__top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;padding-bottom:48px;border-bottom:1px solid rgba(236,232,220,.14)}
-.footer img{height:72px}
+.footer img{height:56px;width:auto}
 .footer h5{font:500 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--cream);margin-bottom:18px}
 .footer a{display:block;color:rgba(236,232,220,.75);text-decoration:none;font:300 14px/2 var(--sans)}
 .footer__bottom{display:flex;justify-content:space-between;gap:24px;padding-top:28px;font:300 12px/1.5 var(--sans);color:rgba(236,232,220,.5)}
@@ -217,7 +218,7 @@ h1 em{font-style:normal;color:var(--linen)}
   </div>
 
   <header class="nav">
-    <a class="nav__logo" href="#"><img src="images/logo_white.png" alt="Ледин Клиника"></a>
+    <a class="nav__logo" href="#"><img src="images/logo-white.svg" alt="Ледин Клиника"></a>
     <nav class="nav__menu"><a href="#">О&nbsp;клинике</a><a href="#">Услуги и&nbsp;цены</a><a href="#">Врачи</a><a href="#">Пациентам</a><a href="#">Контакты</a></nav>
     <div class="nav__right">
       <a class="nav__phone" href="tel:+74954922482">+7&nbsp;495&nbsp;492-24-82</a>
@@ -346,10 +347,14 @@ h1 em{font-style:normal;color:var(--linen)}
     <a class="link link--dark" href="#">Все врачи клиники&nbsp;→</a>
   </div>
   <div class="team__grid">
-    <div class="doc"><div class="doc__photo ph"></div><h4>Евгений Ледин</h4><p>Главный врач, онколог-химиотерапевт</p></div>
-    <div class="doc"><div class="doc__photo ph"></div><h4>Сергей Портной</h4><p>Специализация</p></div>
-    <div class="doc"><div class="doc__photo ph"></div><h4>Владимир Столяров</h4><p>Специализация</p></div>
-    <div class="doc"><div class="doc__photo ph"></div><h4>Анатолий Махсон</h4><p>Специализация</p></div>
+    <div class="doc"><div class="doc__photo"><img src="images/team/makhson.webp" alt="" loading="lazy"></div><h4>Анатолий Махсон</h4><p>Онколог, д.&nbsp;м.&nbsp;н., профессор, заслуженный врач&nbsp;РФ</p><small>Опыт с&nbsp;1972&nbsp;года</small></div>
+    <div class="doc"><div class="doc__photo"><img src="images/team/krasilnikova.webp" alt="" loading="lazy"></div><h4>Богдана Красильникова</h4><p>Онколог, гематолог, к.&nbsp;м.&nbsp;н.</p><small>Опыт с&nbsp;2003&nbsp;года</small></div>
+    <div class="doc"><div class="doc__photo"><img src="images/team/gevorkov.webp" alt="" loading="lazy"></div><h4>Артём Геворков</h4><p>Онколог, радиотерапевт, д.&nbsp;м.&nbsp;н., доцент</p><small>Опыт с&nbsp;2012&nbsp;года</small></div>
+    <div class="doc"><div class="doc__photo"><img src="images/team/evseev.webp" alt="" loading="lazy"></div><h4>Владислав Евсеев</h4><p>Онколог-химиотерапевт, заведующий отделением химиотерапии</p><small>Опыт с&nbsp;2020&nbsp;года</small></div>
+    <div class="doc"><div class="doc__photo"><img src="images/team/stolyarov.webp" alt="" loading="lazy"></div><h4>Владимир Столяров</h4><p>Онколог-химиотерапевт</p><small>Опыт с&nbsp;2021&nbsp;года</small></div>
+    <div class="doc"><div class="doc__photo"><img src="images/team/shamrikova.webp" alt="" loading="lazy"></div><h4>Валентина Шамрикова</h4><p>Онколог-химиотерапевт</p><small>Опыт с&nbsp;2021&nbsp;года</small></div>
+    <div class="doc"><div class="doc__photo"><img src="images/team/sharova.webp" alt="" loading="lazy"></div><h4>Маргарита Шарова</h4><p>Врач-генетик</p><small>Медико-генетическое консультирование</small></div>
+    <div class="doc"><div class="doc__photo"><img src="images/team/selyutsky.webp" alt="" loading="lazy"></div><h4>Станислав Селюцкий</h4><p>Терапевт, кардиолог, пульмонолог</p><small>Опыт с&nbsp;2015&nbsp;года</small></div>
   </div>
 </section>
 
@@ -406,7 +411,7 @@ h1 em{font-style:normal;color:var(--linen)}
 
 <footer class="footer">
   <div class="footer__top">
-    <div><img src="images/logo_white.png" alt="Ледин Клиника"></div>
+    <div><img src="images/logo-white.svg" alt="Ледин Клиника"></div>
     <div><h5>Клиника</h5><a href="#">О&nbsp;клинике</a><a href="#">Врачи</a><a href="#">Пространство</a><a href="#">Партнёры</a></div>
     <div><h5>Пациентам</h5><a href="#">Услуги и&nbsp;цены</a><a href="#">Второе мнение</a><a href="#">Подготовка к&nbsp;визиту</a><a href="#">Документы</a></div>
     <div><h5>Связь</h5><a href="#">+7&nbsp;495&nbsp;492-24-82</a><a href="#">info@ledin-clinic.ru</a><a href="#">Telegram</a><a href="#">YouTube</a></div>
