@@ -60,7 +60,7 @@ const FORM_ENDPOINT = '';
   // Свой разгон и торможение вместо резкого прыжка; отступ под фиксированную шапку;
   // раздел-аккордеон раскрывается до расчёта позиции; колесо или касание прерывают анимацию.
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  const ease = t => 1 - Math.pow(1 - t, 4); // сразу трогается, мягко тормозит
   let anim = 0;
   const stopAnim = () => { cancelAnimationFrame(anim); anim = 0; };
   ['wheel', 'touchstart', 'keydown'].forEach(ev => addEventListener(ev, stopAnim, {passive: true}));
@@ -77,7 +77,7 @@ const FORM_ENDPOINT = '';
     stopAnim();
     if (instant || reduceMotion) { scrollTo(0, target); return; }
     const start = scrollY, dist = target - start;
-    const dur = Math.min(1400, Math.max(550, Math.abs(dist) * .45));
+    const dur = Math.min(800, Math.max(380, Math.abs(dist) * .18));
     const t0 = performance.now();
     const step = now => {
       const k = Math.min((now - t0) / dur, 1);
@@ -193,6 +193,14 @@ const FORM_ENDPOINT = '';
 
   // Фото: шторка снизу вверх
   ['.space__grid .tile', '.doc__photo', '.chief__frame', '.place', '.rv-photo'].forEach(sel => stagger(sel, 'rv-img', 0.1));
+  // Шторка: плашка цвета фона уезжает вверх через transform (без перерисовки картинки на каждом кадре)
+  const bgOf = el => { for (let n = el.parentElement; n; n = n.parentElement) {
+    const c = getComputedStyle(n).backgroundColor; if (c && c !== 'transparent' && !/rgba\(.*,\s*0\)$/.test(c)) return c; }
+    return '#ECE8DC'; };
+  $$('.rv-img').forEach(el => {
+    const cover = document.createElement('rv-cover'); cover.className = 'rv-cover'; cover.setAttribute('aria-hidden', 'true');
+    cover.style.background = bgOf(el); el.appendChild(cover);
+  });
 
   // Тексты и карточки: из лёгкого размытия
   ['.dir__tab', '.dir__panels', '.chief > div:last-child > *', '.space__lead', '.space__feats > div',
@@ -209,19 +217,27 @@ const FORM_ENDPOINT = '';
   }), {threshold: .6});
   $$('[data-count]').forEach(el => cio.observe(el));
 
-  // Параллакс и прогресс этапов
+  // Параллакс и прогресс этапов.
+  // Сначала читаем все размеры, потом пишем стили: так браузер не пересчитывает раскладку
+  // несколько раз за кадр. Блоки за пределами экрана пропускаем.
   const par = $$('[data-parallax]');
-  const stepsAll = $$('.steps');
+  const stepsAll = $$('.steps').map(el => ({el, bar: $('.steps__bar', el), items: $$('.step', el), on: []}));
   const frame = () => {
-    const vh = innerHeight;
-    par.forEach(el => { const r = el.parentElement.getBoundingClientRect();
-      const off = (r.top + r.height / 2 - vh / 2) * +el.dataset.parallax;
-      el.style.transform = `translateY(${off}px)`; });
-    stepsAll.forEach(steps => {
-      const r = steps.getBoundingClientRect(), line = vh * .55;
+    const vh = innerHeight, line = vh * .55;
+    const parR = par.map(el => el.parentElement.getBoundingClientRect());
+    const stR = stepsAll.map(s => {
+      const r = s.el.getBoundingClientRect();
+      const visible = r.bottom > -100 && r.top < vh + 100;
+      return {r, visible, tops: visible ? s.items.map(it => it.getBoundingClientRect().top) : null};
+    });
+    par.forEach((el, i) => { const r = parR[i];
+      if (r.bottom < -200 || r.top > vh + 200) return;
+      el.style.transform = `translate3d(0,${((r.top + r.height / 2 - vh / 2) * +el.dataset.parallax).toFixed(1)}px,0)`; });
+    stepsAll.forEach((s, i) => { const {r, visible, tops} = stR[i];
+      if (!visible) return;
       const prog = Math.max(0, Math.min(1, (line - r.top) / r.height));
-      steps.style.setProperty('--p', prog.toFixed(3));
-      $$('.step', steps).forEach(it => it.classList.toggle('is-on', it.getBoundingClientRect().top < line));
+      if (s.bar) s.bar.style.transform = `scaleY(${prog.toFixed(3)})`;
+      s.items.forEach((it, j) => { const on = tops[j] < line; if (s.on[j] !== on) { s.on[j] = on; it.classList.toggle('is-on', on); } });
     });
   };
   let raf = 0;

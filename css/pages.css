@@ -362,3 +362,21 @@ a.doc:hover h4{color:var(--rust)}
 }
 .ptile{min-width:0}
 .ptile b{-webkit-hyphens:auto;hyphens:auto;overflow-wrap:break-word;max-width:100%}
+
+/* Прокрутка: линия этапов растёт через transform, без пересчёта раскладки */
+.steps__bar{height:calc(100% - 12px)!important;transform-origin:top;transform:scaleY(0);will-change:transform}
+
+/* Прокрутка без рывков: появление без размытия, шторка на фото без скругления внутри clip-path (углы скругляет сам блок) */
+.reveal{filter:none}
+.reveal.in{filter:none}
+.rv-img{clip-path:inset(100% 0 0 0)}
+.rv-img.in{clip-path:inset(0)}
+
+/* Шторка на фото: плашка уезжает вверх, двигается видеокартой */
+.rv-img,.rv-img.in{clip-path:none}
+.rv-img{position:relative}
+.rv-cover{position:absolute;inset:-2px;z-index:3;pointer-events:none;transform-origin:50% 0;
+  transition:transform 1.5s cubic-bezier(.7,0,.2,1);transition-delay:var(--d,0s);will-change:transform}
+.rv-img.in .rv-cover{transform:scaleY(0)}
+.chief__frame.rv-img,.chief__frame.rv-img.in{clip-path:none}
+rv-cover{display:block}
