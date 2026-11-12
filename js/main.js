@@ -56,9 +56,61 @@ const FORM_ENDPOINT = '';
       empty.hidden = any;
     });
   }
-  $$('.pnav a, .ptile').forEach(a => a.addEventListener('click', e => {
-    const g = $(a.getAttribute('href')); if (g && g.tagName === 'DETAILS') g.open = true;
-  }));
+  // ===== Плавная прокрутка к якорям =====
+  // Свой разгон и торможение вместо резкого прыжка; отступ под фиксированную шапку;
+  // раздел-аккордеон раскрывается до расчёта позиции; колесо или касание прерывают анимацию.
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  let anim = 0;
+  const stopAnim = () => { cancelAnimationFrame(anim); anim = 0; };
+  ['wheel', 'touchstart', 'keydown'].forEach(ev => addEventListener(ev, stopAnim, {passive: true}));
+  const headerOffset = () => {
+    // высота шапки в «прокрученном» состоянии + воздух
+    const nav = $('#header .nav');
+    return (nav ? Math.min(nav.offsetHeight, 90) : 80) + 24;
+  };
+  const scrollToEl = (el, instant) => {
+    if (el.tagName === 'DETAILS') el.open = true;
+    const target = Math.max(0, Math.min(
+      el.getBoundingClientRect().top + scrollY - headerOffset(),
+      document.documentElement.scrollHeight - innerHeight));
+    stopAnim();
+    if (instant || reduceMotion) { scrollTo(0, target); return; }
+    const start = scrollY, dist = target - start;
+    const dur = Math.min(1400, Math.max(550, Math.abs(dist) * .45));
+    const t0 = performance.now();
+    const step = now => {
+      const k = Math.min((now - t0) / dur, 1);
+      scrollTo(0, start + dist * ease(k));
+      anim = k < 1 ? requestAnimationFrame(step) : 0;
+    };
+    anim = requestAnimationFrame(step);
+  };
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href*="#"]');
+    if (!a || a.hasAttribute('data-book') || e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    const url = new URL(a.href, location.href);
+    if (url.pathname !== location.pathname || !url.hash || url.hash === '#') return;
+    const el = document.getElementById(decodeURIComponent(url.hash.slice(1)));
+    if (!el) return;
+    e.preventDefault();
+    document.body.classList.remove('menu-open');
+    history.pushState(null, '', url.hash);
+    scrollToEl(el);
+  });
+  // Пришли по ссылке с якорем с другой страницы: плавно доезжаем после загрузки
+  if (location.hash.length > 1) {
+    const el = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (el) {
+      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+      scrollTo(0, 0);
+      addEventListener('load', () => setTimeout(() => scrollToEl(el), 350), {once: true});
+    }
+  }
+  addEventListener('popstate', () => {
+    const el = location.hash.length > 1 && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    el ? scrollToEl(el) : null;
+  });
 
   // ===== Запись: модальное окно =====
   const modal = $('#book-modal');
