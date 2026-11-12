@@ -56,7 +56,7 @@ const FORM_ENDPOINT = '';
       empty.hidden = any;
     });
   }
-  $$('.pnav a').forEach(a => a.addEventListener('click', e => {
+  $$('.pnav a, .ptile').forEach(a => a.addEventListener('click', e => {
     const g = $(a.getAttribute('href')); if (g && g.tagName === 'DETAILS') g.open = true;
   }));
 

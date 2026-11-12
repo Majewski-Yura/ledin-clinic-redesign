@@ -327,3 +327,38 @@ a[href^="mailto"],a[href^="tel"]{white-space:nowrap}
 .cmap__btn{position:absolute;left:24px;bottom:24px;z-index:2}
 a.doc{display:block;color:var(--umber);text-decoration:none}
 a.doc:hover h4{color:var(--rust)}
+
+/* ===== Цены: иконки разделов ===== */
+.picon{flex:none;width:56px;height:56px;border-radius:50%;border:1px solid var(--linen);background:rgba(255,255,255,.55);color:var(--rust);
+  display:grid;place-items:center;transition:background .4s ease,color .4s ease,border-color .4s ease,transform .45s cubic-bezier(.2,.7,.2,1)}
+.picon svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.picon--sm{width:34px;height:34px;background:transparent}
+.picon--sm svg{width:18px;height:18px}
+.ptiles{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:72px}
+.ptile{display:flex;flex-direction:column;align-items:flex-start;gap:6px;padding:24px 22px 22px;border-radius:24px;background:#fff;color:var(--umber);text-decoration:none;
+  transition:background .35s,color .35s,transform .35s}
+.ptile .picon{margin-bottom:18px}
+.ptile b{font:400 21px/1.2 var(--serif);font-weight:400}
+.ptile span{font:500 13px/1.3 var(--sans);color:var(--rust);margin-top:auto;padding-top:10px}
+.ptile em{font:500 11px/1 var(--sans);font-style:normal;letter-spacing:.1em;text-transform:uppercase;color:rgba(46,34,22,.5)}
+.ptile:hover{background:var(--rust);color:#fff;transform:translateY(-3px)}
+.ptile:hover span,.ptile:hover em{color:rgba(255,255,255,.8)}
+.ptile:hover .picon{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.3);color:#fff;transform:rotate(-8deg)}
+.pgroup summary{justify-content:flex-start;gap:20px}
+.pgroup summary .pgroup__t{flex:1}
+.pgroup summary em{margin-left:0}
+.pgroup[open] > summary .picon,.pgroup summary:hover .picon{background:var(--rust);border-color:var(--rust);color:#fff}
+.pnav a{display:flex;align-items:center;gap:12px;padding:8px 0}
+.pnav a:hover .picon{border-color:var(--rust)}
+@media (max-width:1200px){.ptiles{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:900px){
+  .ptiles{grid-template-columns:1fr 1fr;gap:8px;margin-bottom:40px}
+  .ptile{padding:18px 16px;border-radius:20px}
+  .ptile .picon{width:46px;height:46px;margin-bottom:12px}
+  .ptile b{font-size:18px}
+  .pgroup summary{gap:14px}
+  .pgroup summary .picon{width:44px;height:44px}
+  .pgroup summary .picon svg{width:22px;height:22px}
+}
+.ptile{min-width:0}
+.ptile b{-webkit-hyphens:auto;hyphens:auto;overflow-wrap:break-word;max-width:100%}
