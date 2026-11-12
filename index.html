@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ледин Клиника — главная</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#ECE8DC; --linen:#C7BFAD; --sand:#B3A68E; --khaki:#A48F6A;
+  --ochre:#977842; --bronze:#6D4819; --umber:#2E2216; --sage:#6B7B69;
+  --rust:#8F4325; --rust-hover:#7A381E;
+  --serif:'Tenor Sans', 'Montserrat', Arial, sans-serif; /* шрифт заголовков */
+  --sans:'Montserrat', Arial, sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--umber);font-family:var(--sans);color:var(--cream)}
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;overflow:hidden}
+.hero__media{position:absolute;inset:0;background:url(images/hero.jpg) center 45%/cover, linear-gradient(120deg,#6D4819,#2E2216)}
+.hero__media::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(46,34,22,.78) 0%,rgba(46,34,22,.45) 45%,rgba(46,34,22,.05) 75%),
+             linear-gradient(0deg,rgba(46,34,22,.7) 0%,rgba(46,34,22,0) 30%),
+             linear-gradient(180deg,rgba(46,34,22,.55) 0%,rgba(46,34,22,0) 22%)}
+.hero > *:not(.hero__media){position:relative}
+.topbar{display:flex;justify-content:space-between;padding:14px 56px;font-size:12px;letter-spacing:.02em;color:rgba(236,232,220,.7);border-bottom:1px solid rgba(236,232,220,.14)}
+.topbar span+span::before{content:"·";margin:0 12px}
+.nav{display:flex;align-items:center;gap:48px;padding:22px 56px}
+.nav__logo img{height:68px;display:block}
+.nav__menu{display:flex;gap:34px;font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase}
+.nav__menu a,.nav__phone{color:var(--cream);text-decoration:none}
+.nav__right{margin-left:auto;display:flex;align-items:center;gap:28px}
+.nav__phone{font-size:15px;font-weight:500}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--rust);color:#fff;text-decoration:none;
+  font:600 12px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;padding:18px 28px;border-radius:2px;transition:background .2s}
+.btn:hover{background:var(--rust-hover)}
+.btn--sm{padding:14px 22px;font-size:11px}
+.content{margin-top:auto;padding:0 56px 56px;max-width:1000px}
+.hero > .play{position:absolute}
+.eyebrow{display:flex;align-items:center;gap:14px;font-size:12px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(236,232,220,.8)}
+.eyebrow::before{content:"";width:40px;height:1px;background:var(--rust);box-shadow:0 0 0 .5px var(--rust)}
+h1{font:400 64px/1.08 var(--serif);margin:26px 0 28px;letter-spacing:-.01em}
+h1 em{font-style:normal;color:var(--linen)}
+.lead{font:300 17px/1.6 var(--sans);max-width:560px;color:rgba(236,232,220,.86)}
+.actions{display:flex;align-items:center;gap:36px;margin-top:40px}
+.link{color:var(--cream);text-decoration:none;font-size:14px;font-weight:500;letter-spacing:.02em;border-bottom:1px solid rgba(236,232,220,.5);padding-bottom:4px}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(236,232,220,.18);margin:0 56px;padding:26px 0 34px}
+.fact{padding-right:24px}
+.fact b{display:block;font:400 32px/1 var(--serif);color:var(--cream)}
+.fact span{display:block;margin-top:8px;font-size:12px;letter-spacing:.04em;color:rgba(236,232,220,.7)}
+.play{position:absolute;right:56px;bottom:150px;display:flex;align-items:center;gap:14px;color:var(--cream);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:.04em}
+.play i{width:64px;height:64px;border-radius:50%;border:1px solid rgba(236,232,220,.6);display:grid;place-items:center;backdrop-filter:blur(6px);background:rgba(46,34,22,.25)}
+.play i::before{content:"";border-left:14px solid var(--cream);border-top:9px solid transparent;border-bottom:9px solid transparent;margin-left:4px}
+/* Блок 2 — Направления */
+.services{background:var(--cream);color:var(--umber);padding:120px 56px 110px}
+.services__head{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:end;margin-bottom:72px}
+.services .eyebrow{color:var(--bronze)}
+.services h2{font:400 52px/1.1 var(--serif);margin-top:22px}
+.services h2 span{color:var(--ochre)}
+.services__lead{font:300 17px/1.6 var(--sans);max-width:480px;color:rgba(46,34,22,.8)}
+.services__grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--linen)}
+.service{padding:40px 40px 8px 0;border-right:1px solid var(--linen)}
+.service + .service{padding-left:40px}
+.service:last-child{border-right:0;padding-right:0}
+.service__num{font:400 14px/1 var(--serif);color:var(--rust);letter-spacing:.1em}
+.service h3{font:400 30px/1.15 var(--serif);margin:22px 0 16px}
+.service p{font:300 15px/1.6 var(--sans);color:rgba(46,34,22,.78);min-height:96px}
+.service ul{list-style:none;margin-top:28px;border-top:1px solid var(--linen)}
+.service li a{display:flex;justify-content:space-between;padding:16px 0;border-bottom:1px solid var(--linen);
+  color:var(--umber);text-decoration:none;font:400 15px/1.3 var(--sans);transition:color .2s,padding .2s}
+.service li a::after{content:"→";color:var(--khaki);transition:color .2s}
+.service li a:hover{color:var(--rust);padding-left:6px}
+.service li a:hover::after{color:var(--rust)}
+.services__cta{display:flex;justify-content:space-between;align-items:center;gap:32px;margin-top:72px;padding:36px 44px;background:var(--sage);color:var(--cream)}
+.services__cta p{font:400 26px/1.25 var(--serif);max-width:640px}
+.services__cta p span{color:var(--linen)}
+
+/* Общие */
+.sec{padding:120px 56px}
+.sec--dark{background:var(--umber);color:var(--cream)}
+.sec--linen{background:#F4F1E8;color:var(--umber)}
+.sec--cream{background:var(--cream);color:var(--umber)}
+.sec .eyebrow{color:var(--bronze)}
+.sec--dark .eyebrow{color:rgba(236,232,220,.75)}
+.h2{font:400 52px/1.1 var(--serif);margin-top:22px}
+.h2 span{color:var(--ochre)}
+.sec--dark .h2 span{color:var(--linen)}
+.ph{background:linear-gradient(135deg,#B3A68E,#6D4819) center/cover no-repeat}
+.ph--dark{background:linear-gradient(135deg,#6D4819,#2E2216) center/cover no-repeat}
+
+/* Блок 3 — Главный врач */
+.chief{display:grid;grid-template-columns:5fr 7fr;gap:80px;align-items:center}
+.chief__photo{aspect-ratio:4/5;background-image:url(images/ledin.jpg),linear-gradient(160deg,#C7BFAD,#6D4819)}
+.chief__quote{font:400 30px/1.35 var(--serif);margin:34px 0 26px}
+.chief__quote::before{content:"«";color:var(--rust)}
+.chief__quote::after{content:"»";color:var(--rust)}
+.chief__name{font:500 15px/1.4 var(--sans)}
+.chief__role{font:300 14px/1.5 var(--sans);color:rgba(46,34,22,.7)}
+.chief__list{list-style:none;margin-top:40px;display:grid;grid-template-columns:1fr 1fr;gap:0 40px}
+.chief__list li{padding:16px 0;border-top:1px solid var(--linen);font:300 14px/1.5 var(--sans)}
+.chief__list b{display:block;font:400 26px/1.1 var(--serif);color:var(--rust);margin-bottom:6px;font-weight:400}
+
+/* Блок 4 — Пространство */
+.space__head{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:end;margin-bottom:56px}
+.space__lead{font:300 17px/1.6 var(--sans);color:rgba(236,232,220,.8);max-width:500px}
+.space__grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:280px 280px;gap:12px}
+.space__grid div{position:relative}
+.space__grid div:first-child{grid-row:span 2}
+.space__grid span{position:absolute;left:16px;bottom:14px;font:400 12px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--cream)}
+.s1{background-image:url(images/space-1.jpg),linear-gradient(160deg,#977842,#2E2216)}
+.s2{background-image:url(images/space-2.jpg),linear-gradient(160deg,#B3A68E,#6D4819)}
+.s3{background-image:url(images/space-3.jpg),linear-gradient(160deg,#6B7B69,#2E2216)}
+.s4{background-image:url(images/space-4.jpg),linear-gradient(160deg,#A48F6A,#483015)}
+.s5{background-image:url(images/space-5.jpg),linear-gradient(160deg,#8F4325,#2E2216)}
+.space__feats{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:56px;border-top:1px solid rgba(236,232,220,.18);padding-top:36px}
+.space__feats h4{font:400 22px/1.2 var(--serif);margin-bottom:10px}
+.space__feats p{font:300 14px/1.6 var(--sans);color:rgba(236,232,220,.72)}
+
+/* Блок 5 — Врачи */
+.team__head{display:flex;justify-content:space-between;align-items:end;margin-bottom:56px}
+.team__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.doc__photo{aspect-ratio:3/4;margin-bottom:18px}
+.doc:nth-child(1) .doc__photo{background-image:url(images/doctor-1.jpg),linear-gradient(160deg,#C7BFAD,#977842)}
+.doc:nth-child(2) .doc__photo{background-image:url(images/doctor-2.jpg),linear-gradient(160deg,#B3A68E,#6D4819)}
+.doc:nth-child(3) .doc__photo{background-image:url(images/doctor-3.jpg),linear-gradient(160deg,#C7BFAD,#6B7B69)}
+.doc:nth-child(4) .doc__photo{background-image:url(images/doctor-4.jpg),linear-gradient(160deg,#A48F6A,#483015)}
+.doc h4{font:400 22px/1.2 var(--serif)}
+.doc p{font:300 13px/1.5 var(--sans);color:rgba(46,34,22,.7);margin-top:6px}
+.link--dark{color:var(--umber);border-bottom-color:rgba(46,34,22,.4)}
+
+/* Блок 6 — Как проходит лечение */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-top:64px;counter-reset:s}
+.step{border-top:1px solid var(--linen);padding-top:28px;position:relative}
+.step::before{counter-increment:s;content:"0" counter(s);position:absolute;top:-1px;left:0;width:48px;border-top:2px solid var(--rust);padding-top:20px;font:400 14px/1 var(--serif);color:var(--rust);letter-spacing:.1em}
+.step h4{font:400 24px/1.2 var(--serif);margin:28px 0 12px}
+.step p{font:300 14px/1.6 var(--sans);color:rgba(46,34,22,.75)}
+
+/* Блок 7 — Видео */
+.video{position:relative;height:620px;display:flex;align-items:center;justify-content:center;text-align:center;
+  background-image:linear-gradient(rgba(46,34,22,.45),rgba(46,34,22,.6)),url(images/space-2.jpg),linear-gradient(160deg,#977842,#2E2216);background-size:cover;background-position:center;color:var(--cream)}
+.video__btn{width:96px;height:96px;border-radius:50%;border:1px solid rgba(236,232,220,.7);display:grid;place-items:center;margin:0 auto 28px}
+.video__btn::before{content:"";border-left:20px solid var(--cream);border-top:13px solid transparent;border-bottom:13px solid transparent;margin-left:6px}
+.video h2{font:400 44px/1.15 var(--serif)}
+.video p{font:300 15px/1.6 var(--sans);margin-top:14px;color:rgba(236,232,220,.8)}
+
+/* Блок 8 — Запись */
+.book{display:grid;grid-template-columns:1fr 1fr;gap:80px;background:var(--sage);color:var(--cream)}
+.book .eyebrow{color:rgba(236,232,220,.8)}
+.book .eyebrow::before{background:var(--cream)}
+.book .h2 span{color:var(--linen)}
+.book__lead{font:300 16px/1.6 var(--sans);margin-top:24px;max-width:440px;color:rgba(236,232,220,.85)}
+.book__phone{display:block;margin-top:40px;font:400 30px/1 var(--serif);color:var(--cream);text-decoration:none}
+.form{display:grid;gap:16px;align-self:center}
+.form input{background:transparent;border:0;border-bottom:1px solid rgba(236,232,220,.5);padding:16px 0;font:300 17px var(--sans);color:var(--cream);outline:none}
+.form input::placeholder{color:rgba(236,232,220,.65)}
+.form .btn{justify-content:center;margin-top:16px;border:0;cursor:pointer}
+.form small{font:300 11px/1.5 var(--sans);color:rgba(236,232,220,.65)}
+
+/* Блок 9 — Контакты */
+.contacts{display:grid;grid-template-columns:5fr 7fr;gap:64px}
+.contacts dl{margin-top:40px}
+.contacts dt{font:500 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--bronze);margin-top:26px}
+.contacts dd{font:400 20px/1.4 var(--serif);margin-top:8px}
+.map{min-height:460px;background:linear-gradient(135deg,#DCD5C4,#C7BFAD);position:relative}
+.map::after{content:"Карта: ул. Трубецкая, 12";position:absolute;inset:auto auto 20px 20px;font:400 12px var(--sans);color:var(--bronze)}
+.map i{position:absolute;left:52%;top:46%;width:18px;height:18px;border-radius:50%;background:var(--rust);box-shadow:0 0 0 10px rgba(143,67,37,.18)}
+
+/* Футер */
+.footer{background:var(--umber);color:rgba(236,232,220,.75);padding:72px 56px 40px}
+.footer__top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;padding-bottom:48px;border-bottom:1px solid rgba(236,232,220,.14)}
+.footer img{height:72px}
+.footer h5{font:500 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--cream);margin-bottom:18px}
+.footer a{display:block;color:rgba(236,232,220,.75);text-decoration:none;font:300 14px/2 var(--sans)}
+.footer__bottom{display:flex;justify-content:space-between;gap:24px;padding-top:28px;font:300 12px/1.5 var(--sans);color:rgba(236,232,220,.5)}
+
+@media (max-width:900px){
+  .steps{grid-template-columns:1fr 1fr}
+  .video{height:440px}
+  .video h2{font-size:30px}
+  .book,.contacts,.footer__top{grid-template-columns:1fr;gap:40px}
+  .footer{padding:56px 16px 32px}
+  .footer__bottom{flex-direction:column}
+  .sec{padding:72px 16px}
+  .chief,.space__head{grid-template-columns:1fr;gap:32px}
+  .chief__list{grid-template-columns:1fr}
+  .space__grid{grid-template-columns:1fr 1fr;grid-template-rows:200px 160px 160px}
+  .space__grid div:first-child{grid-column:span 2;grid-row:auto}
+  .space__feats,.team__grid{grid-template-columns:1fr 1fr}
+  .team__head{flex-direction:column;align-items:flex-start;gap:20px}
+  .h2{font-size:36px}
+  .services{padding:72px 16px}
+  .services__head,.services__grid{grid-template-columns:1fr}
+  .service,.service + .service{padding:32px 0 8px;border-right:0}
+  .services h2{font-size:36px}
+  .services__cta{flex-direction:column;align-items:flex-start;padding:28px 20px}
+  .topbar,.nav__menu,.nav__phone,.play{display:none}
+  .nav,.content{padding-left:16px;padding-right:16px}
+  .facts{margin:0 16px;grid-template-columns:repeat(2,1fr);row-gap:20px}
+  h1{font-size:46px}
+  .actions{flex-direction:column;align-items:flex-start;gap:20px}
+}
+</style>
+</head>
+<body>
+<section class="hero">
+  <div class="hero__media" role="img" aria-label="Гостиная зона Ледин Клиники"></div>
+
+  <div class="topbar">
+    <div><span>Москва, ул.&nbsp;Трубецкая,&nbsp;12</span><span>Ежедневно 9:00–21:00</span><span>5&nbsp;минут от&nbsp;«Фрунзенской»</span></div>
+    <div><span>info@ledin-clinic.ru</span><span>EN</span></div>
+  </div>
+
+  <header class="nav">
+    <a class="nav__logo" href="#"><img src="images/logo_white.png" alt="Ледин Клиника"></a>
+    <nav class="nav__menu"><a href="#">О&nbsp;клинике</a><a href="#">Услуги и&nbsp;цены</a><a href="#">Врачи</a><a href="#">Пациентам</a><a href="#">Контакты</a></nav>
+    <div class="nav__right">
+      <a class="nav__phone" href="tel:+74954922482">+7&nbsp;495&nbsp;492-24-82</a>
+      <a class="btn btn--sm" href="#">Записаться</a>
+    </div>
+  </header>
+
+  <a class="play" href="#"><i></i>Посмотреть клинику · 0:40</a>
+
+  <div class="content">
+    <div class="eyebrow">Частная онкологическая клиника</div>
+    <h1>Сложные решения&nbsp;—<br><em>в&nbsp;спокойном пространстве</em></h1>
+    <p class="lead">Индивидуальная тактика лечения, международные протоколы и&nbsp;консилиум по&nbsp;каждому случаю. Под руководством онколога Евгения Ледина, 20&nbsp;лет&nbsp;практики.</p>
+    <div class="actions">
+      <a class="btn" href="#">Записаться на&nbsp;консультацию</a>
+      <a class="link" href="#">Получить второе мнение&nbsp;→</a>
+    </div>
+  </div>
+
+  <div class="facts">
+    <div class="fact"><b>20&nbsp;лет</b><span>опыт главного врача</span></div>
+    <div class="fact"><b>50+</b><span>клинических исследований</span></div>
+    <div class="fact"><b>Консилиум</b><span>по&nbsp;каждому случаю</span></div>
+    <div class="fact"><b>Хамовники</b><span>центр Москвы, своя парковка</span></div>
+  </div>
+</section>
+
+<section class="services">
+  <div class="services__head">
+    <div>
+      <div class="eyebrow">Направления</div>
+      <h2>Весь путь лечения&nbsp;—<br><span>в&nbsp;одной клинике</span></h2>
+    </div>
+    <p class="services__lead">От&nbsp;первой консультации до&nbsp;курса терапии вас ведёт одна команда. Врачи видят всю историю болезни и&nbsp;принимают решения вместе, на&nbsp;консилиуме.</p>
+  </div>
+
+  <div class="services__grid">
+    <article class="service">
+      <div class="service__num">01</div>
+      <h3>Консультация</h3>
+      <p>Объясним, что происходит, и&nbsp;составим индивидуальную карту лечения, чтобы пройти сложный путь максимально спокойно.</p>
+      <ul>
+        <li><a href="#">Консультация онколога</a></li>
+        <li><a href="#">Консультация химиотерапевта</a></li>
+        <li><a href="#">Онкологический консилиум</a></li>
+        <li><a href="#">Второе мнение</a></li>
+      </ul>
+    </article>
+    <article class="service">
+      <div class="service__num">02</div>
+      <h3>Лечение</h3>
+      <p>Химиотерапия, таргетная и&nbsp;иммунотерапия по&nbsp;международным протоколам, с&nbsp;оригинальными европейскими препаратами.</p>
+      <ul>
+        <li><a href="#">Химиотерапия</a></li>
+        <li><a href="#">Таргетная терапия</a></li>
+        <li><a href="#">Иммунотерапия</a></li>
+        <li><a href="#">Сопроводительная терапия</a></li>
+      </ul>
+    </article>
+    <article class="service">
+      <div class="service__num">03</div>
+      <h3>Диагностика</h3>
+      <p>Работаем с&nbsp;ведущими лабораториями и&nbsp;диагностическими центрами, чтобы поставить точный диагноз и&nbsp;выбрать верную тактику.</p>
+      <ul>
+        <li><a href="#">Лабораторные исследования</a></li>
+        <li><a href="#">Инструментальная диагностика</a></li>
+        <li><a href="#">Патоморфология</a></li>
+        <li><a href="#">Генетические исследования</a></li>
+      </ul>
+    </article>
+  </div>
+
+  <div class="services__cta">
+    <p>Не&nbsp;знаете, с&nbsp;чего начать? <span>Врач разберёт ваши документы и&nbsp;подскажет следующий шаг.</span></p>
+    <a class="btn" href="#">Записаться на&nbsp;консультацию</a>
+  </div>
+</section>
+
+<section class="sec sec--linen">
+  <div class="chief">
+    <div class="chief__photo ph" role="img" aria-label="Евгений Ледин"></div>
+    <div>
+      <div class="eyebrow">Главный врач и&nbsp;основатель</div>
+      <p class="chief__quote">Рак может быть излечим при своевременной диагностике, точном диагнозе и&nbsp;правильно выбранной тактике. Наша задача&nbsp;— найти её&nbsp;для каждого пациента</p>
+      <div class="chief__name">Евгений Витальевич Ледин</div>
+      <div class="chief__role">Онколог, химиотерапевт, кандидат медицинских наук</div>
+      <ul class="chief__list">
+        <li><b>20&nbsp;лет</b>клинической практики в&nbsp;онкологии</li>
+        <li><b>50+</b>клинических исследований в&nbsp;роли главного исследователя</li>
+        <li><b>53</b>научные статьи, в&nbsp;том числе в&nbsp;Lancet и&nbsp;Journal of&nbsp;Clinical Oncology</li>
+        <li><b>RUSSCO и&nbsp;АОР</b>соавтор национальных стандартов лечения опухолей ЖКТ</li>
+      </ul>
+      <div class="actions"><a class="link link--dark" href="#">Подробнее о&nbsp;докторе&nbsp;→</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--dark">
+  <div class="space__head">
+    <div>
+      <div class="eyebrow">Пространство</div>
+      <h2 class="h2">Клиника, в&nbsp;которой<br><span>становится спокойнее</span></h2>
+    </div>
+    <p class="space__lead">Мы&nbsp;создавали интерьер не&nbsp;как больницу, а&nbsp;как место, где можно выдохнуть: природные оттенки, тёплый свет, искусство на&nbsp;стенах и&nbsp;тишина.</p>
+  </div>
+  <div class="space__grid">
+    <div class="s1 ph"><span>Гостиная</span></div>
+    <div class="s2 ph"><span>Дневной стационар</span></div>
+    <div class="s3 ph"><span>Палата</span></div>
+    <div class="s4 ph"><span>Библиотека</span></div>
+    <div class="s5 ph"><span>Лестница</span></div>
+  </div>
+  <div class="space__feats">
+    <div><h4>Без больничных запахов</h4><p>Чистый воздух и&nbsp;никакой стерильной холодности: здесь не&nbsp;хочется торопиться уйти.</p></div>
+    <div><h4>Природные оттенки</h4><p>Дерево, камень, мягкий текстиль и&nbsp;зелень за&nbsp;окнами снимают напряжение с&nbsp;первых минут.</p></div>
+    <div><h4>Приватность</h4><p>Отдельные зоны для процедур и&nbsp;ожидания, чтобы каждый пациент чувствовал себя защищённым.</p></div>
+  </div>
+</section>
+
+<section class="sec sec--cream">
+  <div class="team__head">
+    <div>
+      <div class="eyebrow">Врачи</div>
+      <h2 class="h2">Команда, которая<br><span>решает вместе</span></h2>
+    </div>
+    <a class="link link--dark" href="#">Все врачи клиники&nbsp;→</a>
+  </div>
+  <div class="team__grid">
+    <div class="doc"><div class="doc__photo ph"></div><h4>Евгений Ледин</h4><p>Главный врач, онколог-химиотерапевт</p></div>
+    <div class="doc"><div class="doc__photo ph"></div><h4>Сергей Портной</h4><p>Специализация</p></div>
+    <div class="doc"><div class="doc__photo ph"></div><h4>Владимир Столяров</h4><p>Специализация</p></div>
+    <div class="doc"><div class="doc__photo ph"></div><h4>Анатолий Махсон</h4><p>Специализация</p></div>
+  </div>
+</section>
+
+<section class="sec sec--linen">
+  <div class="eyebrow">Как мы&nbsp;работаем</div>
+  <h2 class="h2">Понятный путь<br><span>с&nbsp;первого звонка</span></h2>
+  <div class="steps">
+    <div class="step"><h4>Заявка</h4><p>Оставьте телефон. Координатор перезвонит, ответит на&nbsp;вопросы и&nbsp;подберёт удобное время.</p></div>
+    <div class="step"><h4>Консультация</h4><p>Врач изучит документы и&nbsp;результаты обследований, объяснит ситуацию простым языком.</p></div>
+    <div class="step"><h4>Консилиум</h4><p>Сложный случай обсуждают несколько специалистов, чтобы выбрать лучшую тактику.</p></div>
+    <div class="step"><h4>План лечения</h4><p>Вы&nbsp;получаете индивидуальную карту лечения и&nbsp;координатора, который ведёт вас до&nbsp;конца.</p></div>
+  </div>
+</section>
+
+<section class="video">
+  <div>
+    <a class="video__btn" href="#" aria-label="Смотреть видео"></a>
+    <h2>Посмотрите клинику<br>до&nbsp;первого визита</h2>
+    <p>Видеоэкскурсия · 1&nbsp;минута</p>
+  </div>
+</section>
+
+<section class="sec book">
+  <div>
+    <div class="eyebrow">Запись на&nbsp;приём</div>
+    <h2 class="h2">Сделайте первый шаг&nbsp;—<br><span>мы&nbsp;поможем с&nbsp;остальным</span></h2>
+    <p class="book__lead">Оставьте номер телефона, и&nbsp;координатор перезвонит, ответит на&nbsp;вопросы и&nbsp;запишет на&nbsp;приём.</p>
+    <a class="book__phone" href="tel:+74954922482">+7&nbsp;495&nbsp;492-24-82</a>
+  </div>
+  <form class="form" onsubmit="return false">
+    <input type="text" placeholder="Ваше имя">
+    <input type="tel" placeholder="Телефон">
+    <input type="text" placeholder="Комментарий (необязательно)">
+    <button class="btn" type="submit">Записаться на&nbsp;приём</button>
+    <small>Нажимая кнопку, вы&nbsp;соглашаетесь на&nbsp;обработку персональных данных в&nbsp;соответствии с&nbsp;152-ФЗ.</small>
+  </form>
+</section>
+
+<section class="sec sec--cream">
+  <div class="contacts">
+    <div>
+      <div class="eyebrow">Контакты</div>
+      <h2 class="h2">В&nbsp;центре Москвы,<br><span>в&nbsp;Хамовниках</span></h2>
+      <dl>
+        <dt>Адрес</dt><dd>Москва, ул.&nbsp;Трубецкая,&nbsp;12</dd>
+        <dt>Как добраться</dt><dd>5&nbsp;минут пешком от&nbsp;метро «Фрунзенская», есть парковка</dd>
+        <dt>Часы работы</dt><dd>Ежедневно, 9:00–21:00</dd>
+        <dt>Телефон</dt><dd>+7&nbsp;495&nbsp;492-24-82</dd>
+      </dl>
+    </div>
+    <div class="map"><i></i></div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer__top">
+    <div><img src="images/logo_white.png" alt="Ледин Клиника"></div>
+    <div><h5>Клиника</h5><a href="#">О&nbsp;клинике</a><a href="#">Врачи</a><a href="#">Пространство</a><a href="#">Партнёры</a></div>
+    <div><h5>Пациентам</h5><a href="#">Услуги и&nbsp;цены</a><a href="#">Второе мнение</a><a href="#">Подготовка к&nbsp;визиту</a><a href="#">Документы</a></div>
+    <div><h5>Связь</h5><a href="#">+7&nbsp;495&nbsp;492-24-82</a><a href="#">info@ledin-clinic.ru</a><a href="#">Telegram</a><a href="#">YouTube</a></div>
+  </div>
+  <div class="footer__bottom">
+    <span>© 2026 Ледин Клиника. Медицинская лицензия №&nbsp;—</span>
+    <span>Имеются противопоказания, необходима консультация специалиста</span>
+  </div>
+</footer>
+</body>
+</html>
