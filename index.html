@@ -82,6 +82,8 @@ h1 em{font-style:normal;color:var(--linen)}
 
 /* Блок 3 — Главный врач */
 .chief{display:grid;grid-template-columns:5fr 7fr;gap:80px;align-items:center}
+.sec--linen:has(.chief){padding-bottom:0;background:#fff}
+.chief > div:last-child{padding-bottom:120px}
 .chief__photo{aspect-ratio:4/5;background-image:url(images/ledin.jpg),linear-gradient(160deg,#C7BFAD,#6D4819);background-position:center top}
 .chief__label{font:500 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--bronze)}
 .chief__quote{font:400 30px/1.35 var(--serif);margin:34px 0 26px}
@@ -243,7 +245,12 @@ html,body{overflow-x:clip}
 .service li a{padding:14px 0;gap:16px}
 
 /* ===== Главный врач ===== */
-.chief__frame{border-radius:20px;overflow:hidden}
+.chief__frame{align-self:end;position:relative}
+.chief__cut{display:block;width:100%;max-width:520px;height:auto;margin:0 auto;will-change:transform;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 16%,#000 84%,transparent 100%),linear-gradient(180deg,#000 72%,transparent 98%);
+  -webkit-mask-composite:source-in;
+  mask-image:linear-gradient(90deg,transparent 0,#000 16%,#000 84%,transparent 100%),linear-gradient(180deg,#000 72%,transparent 98%);
+  mask-composite:intersect}
 .chief__photo{border-radius:0;transform:scale(1.12);will-change:transform}
 
 /* ===== Пространство: плитки ===== */
@@ -385,7 +392,7 @@ html,body{overflow-x:clip}
 
 <section class="sec sec--linen">
   <div class="chief">
-    <div class="chief__frame"><div class="chief__photo ph" data-parallax="0.06" role="img" aria-label="Евгений Ледин"></div></div>
+    <div class="chief__frame"><img class="chief__cut" data-parallax="0.05" src="images/ledin-cut.webp" alt="Евгений Ледин"></div>
     <div>
       <div class="chief__label">Главный врач и&nbsp;основатель</div>
       <p class="chief__quote">Рак можно вылечить, если вовремя его найти, точно поставить диагноз и&nbsp;правильно выбрать тактику лечения</p>
@@ -543,7 +550,7 @@ html,body{overflow-x:clip}
     const vh = innerHeight;
     par.forEach(el => { const r = el.parentElement.getBoundingClientRect();
       const off = (r.top + r.height / 2 - vh / 2) * +el.dataset.parallax;
-      el.style.transform = `translateY(${off}px) scale(1.12)`; });
+      el.style.transform = `translateY(${off}px)`; });
     const r = steps.getBoundingClientRect(), line = vh * .55;
     const prog = Math.max(0, Math.min(1, (line - r.top) / r.height));
     steps.style.setProperty('--p', prog.toFixed(3));
