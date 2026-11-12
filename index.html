@@ -134,11 +134,12 @@ h1 em{font-style:normal;color:var(--linen)}
 
 .book__lead{font:300 16px/1.6 var(--sans);margin-top:24px;max-width:440px;color:rgba(236,232,220,.85)}
 .book__phone{display:block;margin-top:40px;font:400 30px/1 var(--serif);color:var(--cream);text-decoration:none}
-.form{display:grid;gap:16px;align-self:center}
-.form input{background:transparent;border:0;border-bottom:1px solid rgba(236,232,220,.5);padding:16px 0;font:300 17px var(--sans);color:var(--cream);outline:none}
-.form input::placeholder{color:rgba(236,232,220,.65)}
-.form .btn{justify-content:center;margin-top:16px;border:0;cursor:pointer}
-.form small{font:300 11px/1.5 var(--sans);color:rgba(236,232,220,.65)}
+.form{display:grid;gap:8px;align-self:center;background:#fff;border-radius:24px;padding:40px 40px 32px;color:var(--umber)}
+.form input{background:transparent;border:0;border-bottom:1px solid var(--linen);padding:16px 0;font:300 17px var(--sans);color:var(--umber);outline:none;transition:border-color .2s}
+.form input:focus{border-bottom-color:var(--rust)}
+.form input::placeholder{color:rgba(46,34,22,.5)}
+.form .btn{justify-content:center;margin-top:24px;border:0;cursor:pointer}
+.form small{font:300 11px/1.5 var(--sans);color:rgba(46,34,22,.55);margin-top:8px}
 
 /* Блок 9 — Контакты */
 .contacts{display:grid;grid-template-columns:5fr 7fr;gap:64px}
@@ -171,6 +172,7 @@ h1 em{font-style:normal;color:var(--linen)}
 @media (max-width:900px){
   .book-wrap{padding:0 12px 12px}
   .book{border-radius:24px}
+  .form{padding:28px 20px 24px}
   .steps{grid-template-columns:1fr 1fr}
   .book,.contacts,.footer__top{grid-template-columns:1fr;gap:40px}
   .footer{padding:56px 16px 32px}
