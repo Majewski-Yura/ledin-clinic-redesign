@@ -391,3 +391,9 @@ rv-cover{display:block}
 @media (max-width:900px){.doc--lead .doc__photo{min-height:340px}.doc--lead{padding:0}}
 
 #docs .doc[hidden]{display:none!important}
+
+/* Иконки принципов */
+.card__ico{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;background:#fff;color:var(--rust);margin-bottom:6px;
+  transition:background .4s ease,color .4s ease,transform .4s cubic-bezier(.2,.7,.2,1)}
+.card__ico svg{width:34px;height:34px;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.card:hover .card__ico{background:var(--rust);color:#fff;transform:rotate(-8deg)}
