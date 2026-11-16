@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/main.css?v=076727db">
-<link rel="stylesheet" href="css/pages.css?v=181e1420">
+<link rel="stylesheet" href="css/pages.css?v=79e76eb5">
 </head>
 <body>
 <div class="header" id="header">
@@ -68,7 +68,11 @@
 <script>
 document.querySelectorAll('.dfilter button').forEach(b => b.addEventListener('click', () => {
   document.querySelectorAll('.dfilter button').forEach(x => x.classList.toggle('is-active', x === b));
-  document.querySelectorAll('#docs .doc').forEach(d => d.hidden = !(b.dataset.f === 'all' || d.dataset.group === b.dataset.f));
+  document.querySelectorAll('#docs .doc').forEach(d => {
+    const show = b.dataset.f === 'all' || d.dataset.group === b.dataset.f;
+    d.hidden = !show;
+    if (show) [d, ...d.querySelectorAll('.reveal, .rv-img, .rv')].forEach(e => e.classList.add('in'));
+  });
 }));
 </script>
 <div class="book-wrap">

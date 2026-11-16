@@ -389,3 +389,5 @@ rv-cover{display:block}
 .doc--lead > div:last-child{align-self:center;padding:40px 0}
 .doc--lead h4{font-size:36px}
 @media (max-width:900px){.doc--lead .doc__photo{min-height:340px}.doc--lead{padding:0}}
+
+#docs .doc[hidden]{display:none!important}
