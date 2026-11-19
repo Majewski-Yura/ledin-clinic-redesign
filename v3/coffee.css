@@ -24,9 +24,16 @@
   --gutter: clamp(20px, 4vw, 76px);
 }
 
-body, .header, .header.is-scrolled, .mmenu { background: var(--cream); color: var(--umber); }
-.header { position: sticky; border-bottom: 1px solid var(--linen); }
-.header .topbar { padding-inline: var(--gutter); color: var(--secondary); border-color: var(--linen); }
+body, .mmenu { background: var(--cream); color: var(--umber); }
+.header {
+  background: rgb(245 241 234 / 73%);
+  color: var(--umber);
+  border-bottom: 1px solid rgb(178 150 125 / 40%);
+  -webkit-backdrop-filter: blur(9px);
+  backdrop-filter: blur(9px);
+}
+.header.is-scrolled { background: rgb(245 241 234 / 79%); }
+.header .topbar { padding-inline: var(--gutter); color: var(--umber); border-color: rgb(178 150 125 / 40%); }
 .header .nav { padding-inline: var(--gutter); }
 .nav__menu a, .nav__phone, .mmenu a { color: var(--umber); }
 .burger { border-color: var(--camel); }
@@ -37,9 +44,9 @@ body, .header, .header.is-scrolled, .mmenu { background: var(--cream); color: va
 :focus-visible { outline: 2px solid var(--umber); outline-offset: 3px; }
 
 .hero {
-  min-height: clamp(570px, calc(100svh - 136px), 1000px);
+  min-height: clamp(706px, 100svh, 1136px);
   justify-content: flex-end;
-  padding: 72px var(--gutter);
+  padding: 208px var(--gutter) 72px;
   color: var(--cream);
 }
 .hero__media { background: var(--secondary) url(../images/hero.jpg) center 46% / cover no-repeat; }
@@ -89,7 +96,7 @@ body, .header, .header.is-scrolled, .mmenu { background: var(--cream); color: va
 }
 .dir__chips a:hover { background: var(--rust); color: white; }
 .dir__count, .chief__role, .step p, .doc p, .space__lead, .space__feats p { color: var(--secondary); }
-.interiors { background: #fff; }
+.interiors, .sec--white { background: #fff; }
 .space__feats { border-color: var(--camel); }
 .space__grid .tile::after { background: none; }
 .space__grid .tile span {
@@ -116,12 +123,12 @@ p, dd, li { text-wrap: pretty; }
 h1, h2, h3 { text-wrap: balance; }
 
 @media (max-width: 900px) {
-  .hero { min-height: max(520px, calc(100svh - 92px)); padding-block: 88px 28px; }
+  .hero { min-height: max(612px, 100svh); padding-block: 180px 28px; }
   .hero__media { background-position: 59% center; }
   .hero__media::after { background: linear-gradient(0deg, rgb(26 27 26 / 87%), rgb(26 27 26 / 66%) 50%, rgb(26 27 26 / 6%) 96%); }
   .hero h1 { font-size: clamp(22px, 6.65vw, 58px); margin: 18px 0; }
   .hero .actions { flex-direction: row; align-items: center; margin-top: 24px; }
-  .hero > .hero-tour { bottom: auto; top: 18px; }
+  .hero > .hero-tour { bottom: auto; top: 110px; }
   .space__grid .tile:first-child { grid-row: auto; }
   .chief > div:last-child { padding-bottom: 60px; }
   .team__grid { grid-template-columns: none; }
