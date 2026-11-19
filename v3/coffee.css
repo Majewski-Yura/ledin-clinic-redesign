@@ -69,7 +69,24 @@ body, .header, .header.is-scrolled, .mmenu { background: var(--cream); color: va
 
 .services, .sec--cream { background: var(--coffee); }
 .sec--linen, .sec--linen:has(.chief), .book-wrap, .dir__tab.is-active, .dir__panel { background: var(--cream); }
-.dir__chips a, .modal__topic { background: var(--coffee); }
+.dir { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+.dir__panels, .dir__panel { min-width: 0; }
+.dir__chips { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.dir__chips a {
+  min-width: 0;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px;
+  background: var(--coffee);
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+.dir__chips a::after { position: static; align-self: flex-end; margin-top: auto; flex-shrink: 0; }
+.modal__topic { background: var(--coffee); }
+@media (min-width: 901px) and (max-width: 1200px) {
+  .dir { grid-template-columns: minmax(280px, 1fr) minmax(0, 2fr); gap: 24px; }
+  .dir__panel { padding: 32px 24px; }
+}
 .dir__chips a:hover { background: var(--rust); color: white; }
 .dir__count, .chief__role, .step p, .doc p, .space__lead, .space__feats p { color: var(--secondary); }
 .interiors { background: #fff; }
@@ -110,7 +127,8 @@ h1, h2, h3 { text-wrap: balance; }
   .team__grid { grid-template-columns: none; }
   .doc h4, .dir__text { overflow-wrap: break-word; }
   .dir, .dir__panels, .dir__chips, .space__head, .contacts, .book, .how, .chief, .services__head { grid-template-columns: minmax(0, 1fr); }
-  .dir__chips a { padding-right: 54px; overflow-wrap: anywhere; }
+  .dir__chips a { flex-direction: row; align-items: center; }
+  .dir__chips a::after { align-self: center; margin: 0 0 0 auto; }
   .hero .content, .form { min-width: 0; }
   .hero .btn { max-width: 100%; padding-inline: 18px; font-size: 11px; }
   .space__head h2, .chief__list, .book h2, .footer__cta p { overflow-wrap: anywhere; }
